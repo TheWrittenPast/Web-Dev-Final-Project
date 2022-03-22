@@ -34,6 +34,10 @@ require('connect.php');
         <input name="title" id="title" />
       </p>
       <p>
+        <label for="game">Game</label>
+        <input name="game" id="game" />
+      </p>
+      <p>
         <label for="content">Content</label>
         <textarea name="content" id="content"></textarea>
       </p>
