@@ -11,7 +11,7 @@ require('connect.php');
 if($_GET && is_numeric($_GET['id'])) {
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-    $query = "SELECT * FROM blog WHERE id = :id LIMIT 1";
+    $query = "SELECT * FROM post WHERE Page_id = :id LIMIT 1";
     $statement = $db->prepare($query);
 
     $statement->bindValue('id', $id, PDO::PARAM_INT);
@@ -49,7 +49,11 @@ if($_GET && is_numeric($_GET['id'])) {
                 <legend>Edit Blog Post</legend>
                     <p>
                         <label for="title">Title</label>
-                        <input name="title" id="title" value= '<?= $row['title']?>' />
+                        <input name="title" id="title" value= '<?= $row['Title']?>' />
+                    </p>
+                    <p>
+                        <label for="game">Game</label>
+                        <input name="game" id="game" value= '<?= $row['Game']?>' />
                     </p>
                     <p>
                         <label for="content">Content</label>
@@ -57,7 +61,7 @@ if($_GET && is_numeric($_GET['id'])) {
                     </p>
                 
             <p>
-                <input type="hidden" name="id" value=<?= $row['id']?> />
+                <input type="hidden" name="id" value=<?= $row['Page_id']?> />
                 <input type="submit" name="command" value="Update" />
                 <input type="submit" name="command" value="Delete" onclick="return confirm('Are you sure you wish to delete this post?')" />
             </p>

@@ -1,6 +1,5 @@
 <?php 
 /*               
- *      Blog Assignment
  *      Name: John Russel Tabelina
  *      Date: February 11, 2022
  *      Description: Completes the action for the post, whether its update, delete, or create.
@@ -9,23 +8,24 @@
     require('connect.php');
     
 if ($_POST['command']=='Create') {
-    if ($_POST && !empty($_POST['title']) && !empty($_POST['content'])) {
+    if ($_POST && !empty($_POST['title']) && !empty($_POST['content']) && $_POST && !empty($_POST['game']) ) {
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $Game = filter_input(INPUT_POST, 'game', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        $query = "INSERT INTO post (title, content) VALUES(:title, :content)";
+        $query = "INSERT INTO post (title, content, Game) VALUES(:title, :content, :Game)";
 
         $statement = $db->prepare($query);
 
         $statement->bindvalue(':title', $title);
         $statement->bindvalue(':content',$content);
+        $statement->bindvalue(':Game',$Game);
 
         if($statement->execute()){
             header("Location:index.php");
             exit();
         }
     }
-
 } 
 if ($_POST['command']=='Update') {
 
@@ -34,13 +34,15 @@ if ($_POST['command']=='Update') {
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $Game = filter_input(INPUT_POST, 'game', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         // Build the parameterized SQL query and bind the sanitized values to the parameters
-        $query = "UPDATE blog SET title = :title, content = :content WHERE id = :id";
+        $query = "UPDATE post SET title = :title, content = :content, Game = :Game WHERE Page_id = :id";
         $statement = $db->prepare($query);
         $statement->bindValue(':title', $title);        
         $statement->bindValue(':content', $content);
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindvalue(':Game',$Game);
 
         // Execute the INSERT.
         if($statement->execute()){
@@ -49,12 +51,11 @@ if ($_POST['command']=='Update') {
         }
     }
 } 
-
 if ($_POST['command']=='Delete') {
 
     $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
     
-    $query = "DELETE FROM blog WHERE id = :id LIMIT 1";
+    $query = "DELETE FROM post WHERE Page_id = :id LIMIT 1";
     
     $statement = $db->prepare($query);
     

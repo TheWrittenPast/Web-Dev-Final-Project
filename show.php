@@ -8,7 +8,7 @@
 require('connect.php');
 if ($_GET && is_numeric($_GET['id'])) {
 
-  $query = "SELECT * FROM post WHERE id = :id LIMIT 1";
+  $query = "SELECT * FROM post WHERE Page_id = :id LIMIT 1";
   $statement = $db->prepare($query);
 
   $id = filter_input(INPUT_GET,'id',FILTER_SANITIZE_NUMBER_INT);
@@ -36,7 +36,7 @@ if ($_GET && is_numeric($_GET['id'])) {
 <body>
     <div id="wrapper">
         <div id="header">
-            <h1><a href="index.php">The Past Is Written - <?= $row['title']?></a></h1>
+            <h1><a href="index.php">The Past Is Written - <?= $row['Title']?></a></h1>
         </div> <!-- END div id="header" -->
 <ul id="menu">
     <li><a href="index.php" >Home</a></li>
@@ -44,12 +44,12 @@ if ($_GET && is_numeric($_GET['id'])) {
 </ul> <!-- END div id="menu" -->
   <div id="all_blogs">
     <div class="blog_post">
-      <h2><?= $row['title']?></a></h2>
+      <h2><?= $row['Title']?></a></h2>
       <p>
         <small>
 
-        <?= date('F d, Y, g:i a',strtotime($row['time']))?> -
-        <a href="edit.php?id=<?= $row['id']?>">edit</a>
+        <?= date('F d, Y, g:i a',strtotime($row['Date']))?> -
+        <a href="edit.php?id=<?= $row['Page_id']?>">edit</a>
         </small>
       </p>
       <div class='blog_content'>

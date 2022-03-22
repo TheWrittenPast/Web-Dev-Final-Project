@@ -8,7 +8,7 @@
 require('connect.php');
 
 // SQL is written as a String.
-$query = "SELECT * FROM post ORDER BY date DESC LIMIT 5";
+$query = "SELECT * FROM post ORDER BY date DESC";
 $gameSet = "SELECT * FROM games";
 
 // A PDO::Statement is prepared from the query.
@@ -55,7 +55,7 @@ $gameStatement->execute();
             <?php while($row = $statement->fetch()) :?>
                 <h2> <a href="show.php?id=<?= $row['Page_id']?>"> <?= $row['Title'] ?> </a> </h2>
                 <p> <?= date('F d, Y, g:i a',strtotime($row['Date']))  ?> - <a href="edit.php?id=<?= $row['Page_id']?>">edit</a></p>
-            <p>Created By: <?= $row['Create_By']?></p>
+            <!-- <p>Created By: <?= $row['Create_By']?></p> -->
             <p>
                 <small>
                     <?php if(strlen($row['content'] <= 200 )) :?>
