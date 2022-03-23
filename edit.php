@@ -6,6 +6,7 @@
  */
 
 require('connect.php');
+require('authenticate.php');
 
 if($_GET && is_numeric($_GET['id'])) {
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);

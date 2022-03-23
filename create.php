@@ -5,6 +5,7 @@
  *      Description: Shows the Create page of the post.
  */
 require('connect.php');
+require('authenticate.php');
 
 ?>
 

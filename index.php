@@ -32,21 +32,30 @@ $gameStatement->execute();
 <body>
 
 <div id="wrapper">
+
+    <div id="loginRegister">
+        <button><a href="login.php">Log-in</a> </button>
+        <button><a href="register.php">Register</a> </button>
+    </div>
+
         <div id="header">
             <h1><a href="index.php">RISE - Home Page</a></h1>
         </div> <!-- END div id="header" -->
-<ul id="menu">
-    <li><a href="index.php" class='active'>Home</a></li>
-    <li><a href="create.php" >New Post</a></li>
-        <select name="games" onchange="OnSelectionChange()">
-            <option value="all">All</option>
-            <?php while($row = $gameStatement->fetch()) :?>
-                <option value="<?= $row['Game']?>"><?= $row['Game'] ?></option>
-            <?php endwhile ?>
-        </select>
 
-    
-</ul> <!-- END div id="menu" -->
+<div id="menuWrap">
+    <ul id="menu">
+        <li><a href="index.php" class='active'>Home</a></li>
+        <li><a href="create.php" >New Post</a></li>
+            <select name="games" onchange="OnSelectionChange()">
+                <option value="all">All</option>
+                <?php while($row = $gameStatement->fetch()) :?>
+                    <option value="<?= $row['Game']?>"><?= $row['Game'] ?></option>
+                <?php endwhile ?>
+            </select>
+    </ul> <!-- END div id="menu" -->
+</div>
+
+
 <div id="all_blogs">
 
 <?php if($statement->rowCount() > 0) :?>
