@@ -1,8 +1,7 @@
 <?php 
 /*               
- *      Blog Assignment
  *      Name: John Russel Tabelina
- *      Date: February 11, 2022
+ *      Date: March 21, 2022
  *      Description: Shows the edit page of the post.
  */
 
