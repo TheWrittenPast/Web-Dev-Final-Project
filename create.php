@@ -13,13 +13,13 @@ require('authenticate.php');
 <html>
 <head>
     <meta charset="utf-8">
-    <title>The Past Is Written - New Post</title>
+    <title>New Post</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
 </head>
 <body>
     <div id="wrapper">
         <div id="header">
-            <h1><a href="index.php">The Past Is Written - New Post</a></h1>
+            <h1><a href="index.php">RISE - New Post</a></h1>
         </div> <!-- END div id="header" -->
 <ul id="menu">
     <li><a href="index.php" >Home</a></li>

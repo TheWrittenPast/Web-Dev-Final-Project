@@ -36,7 +36,7 @@ if ($_GET && is_numeric($_GET['id'])) {
 <body>
     <div id="wrapper">
         <div id="header">
-            <h1><a href="index.php">The Past Is Written - <?= $row['Title']?></a></h1>
+            <h1><a href="index.php">RISE - <?= $row['Title']?></a></h1>
         </div> <!-- END div id="header" -->
 <ul id="menu">
     <li><a href="index.php" >Home</a></li>

@@ -69,7 +69,7 @@ $gameStatement->execute();
                     <?php if(strlen($row['content'] <= 200 )) :?>
                         <?= substr($row['content'], 0, 200) ?>  ... <a href="show.php?id=<?= $row['Page_id']?>">Read more</a>
                     <?php else :?>
-                        <?= $row['content'] ?>
+                            <?= $row['content'] ?>
                     <?php endif ?>
                 </small>
             </p> 
