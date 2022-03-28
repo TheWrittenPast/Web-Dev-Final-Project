@@ -6,7 +6,6 @@
  */
 
     require('connect.php');
-    require('authenticate.php');
 
 if ($_POST['command']=='Create') {
     if ($_POST && !empty($_POST['title']) && !empty($_POST['content']) && $_POST && !empty($_POST['game']) ) {

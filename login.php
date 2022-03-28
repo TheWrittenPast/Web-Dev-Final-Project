@@ -7,6 +7,7 @@
 require('connect.php');
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,23 @@ require('connect.php');
 </head>
 <body>
     <div id="wrapper">
-        <h1>Login</h1>
+        <form action="action_page.php">
+            <div class="container">
+                <h1>Login</h1>
+
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" id="username" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+                <button type="submit" class="registerbtn">Login</button>
+            </div>
+
+            <div class="container signin">
+                <p>Don't have an account? <a href="register.php">Register</a></p>
+            </div>
+        </form> 
     </div>
 </body>
 </html>

@@ -5,7 +5,7 @@
  *      Description: Home page for blog.
  */
 require('connect.php');
-
+$limit = 3;
 // SQL is written as a String.
 $query = "SELECT * FROM post ORDER BY date DESC";
 $gameSet = "SELECT * FROM games";
@@ -31,62 +31,53 @@ $gameStatement->execute();
 </head>
 <body>
 
-<div id="wrapper">
 
-    <div id="loginRegister">
+<header>
+    <nav>
         <button><a href="login.php">Log-in</a> </button>
         <button><a href="register.php">Register</a> </button>
-    </div>
-
-        <div id="header">
-            <h1><a href="index.php">RISE - Home Page</a></h1>
-        </div> <!-- END div id="header" -->
-
-<div id="menuWrap">
-    <ul id="menu">
         <li><a href="index.php" class='active'>Home</a></li>
         <li><a href="create.php" >New Post</a></li>
-            <select name="games" onchange="OnSelectionChange()">
-                <option value="all">All</option>
-                <?php while($row = $gameStatement->fetch()) :?>
-                    <option value="<?= $row['Game']?>"><?= $row['Game'] ?></option>
+
+    <select name="games">
+        <option value="all">All</option>
+        <?php while($row = $gameStatement->fetch()) :?>
+            <option value="<?= $row['Game']?>"><?= $row['Game'] ?></option>
+        <?php endwhile ?>
+    </select>
+
+    </nav>
+
+    <h1><a href="index.php">RISE - Home Page</a></h1>
+
+</header>
+
+<section id="posts">
+
+    <?php if($statement->rowCount() > 0) :?>
+            <div class="article">
+                <?php while($row = $statement->fetch()) :?>
+                    <article>
+                        <h2> <a href="show.php?id=<?= $row['Page_id']?>"> <?= $row['Title'] ?> </a> </h2>
+                        <p> <?= date('F d, Y, g:i a',strtotime($row['Date']))  ?> - <a href="edit.php?id=<?= $row['Page_id']?>">edit</a></p>
+                    <!-- <p>Created By: <?= $row['Create_By']?></p> -->
+                    <p>
+                        <small>
+                            <?php if(strlen($row['content'] <= 200 )) :?>
+                                <?= substr($row['content'], 0, 200) ?>  ... <a href="show.php?id=<?= $row['Page_id']?>">Read more</a>
+                            <?php else :?>
+                                    <?= $row['content'] ?>
+                            <?php endif ?>
+                        </small>
+                    </p> 
+                </article>
                 <?php endwhile ?>
-            </select>
-    </ul> <!-- END div id="menu" -->
-</div>
-
-
-<div id="all_blogs">
-
-<?php if($statement->rowCount() > 0) :?>
-        <div class="blog_post">
-            <?php while($row = $statement->fetch()) :?>
-                <h2> <a href="show.php?id=<?= $row['Page_id']?>"> <?= $row['Title'] ?> </a> </h2>
-                <p> <?= date('F d, Y, g:i a',strtotime($row['Date']))  ?> - <a href="edit.php?id=<?= $row['Page_id']?>">edit</a></p>
-            <!-- <p>Created By: <?= $row['Create_By']?></p> -->
-            <p>
-                <small>
-                    <?php if(strlen($row['content'] <= 200 )) :?>
-                        <?= substr($row['content'], 0, 200) ?>  ... <a href="show.php?id=<?= $row['Page_id']?>">Read more</a>
-                    <?php else :?>
-                            <?= $row['content'] ?>
-                    <?php endif ?>
-                </small>
-            </p> 
-                
-             
-            <?php endwhile ?>
-        </div>
+            </div>
     <?php else: ?>
-            <p>There are no tweets.</p>
+            <p>There are no reviews.</p>
     <?php endif ?>
 
-</div>
-
-<div id="footer">
-            Copywrong 2022 - No Rights Reserved
-        </div> <!-- END div id="footer" -->
-</div>
+</section>
 
 </body>
 </html>

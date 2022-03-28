@@ -1,103 +1,120 @@
-label {
-    display: block;
-}
-
-input#title {
-    width: 40em;
-}
-
-textarea {
-    height: 10em;
-    width: 55em;
-}
-
 body {
-    text-align: center;
-    background: #222222;    
+    background: #a6a6a6;    
 }
 
-fieldset {
-    margin-top: 10px;
+h2 a, h1 a {
+    text-decoration: none;
+    color: black;
 }
+
+header{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+nav {
+    display: flex;
+    Flex-direction: row;
+    justify-content: space-evenly;
+    list-style: none;
+    font-size: 1.5em;
+}
+
+h1 {
+    font-family: sans-serif;
+    font-size: 2rem;
+    margin: auto; 
+    justify-content: center;
+}
+
+section {
+    display: flex;
+    Flex-direction: column;
+    justify-content: center;
+}
+
+div { /* rows of articles */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 20px;
+    width: 100%;  
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+article { /* each video game review */
+    display: flex;
+    flex-direction: column;
+    width: 31%;
+    border: 1px solid grey;
+    margin: 5px;
+    padding-left: 20px;
+    background-color: beige;
+    }
+    
+    /* article h2, article p, article small{
+        padding-left: ;
+    } */
+
+
+h2{
+    
+    Font-family: sans-serif;
+    Font-size: 1rem;
+    }
+
+/* REGISTER/LOGIN */
 
 #wrapper {
-    width: 800px;
+    width: 1000px;
     margin: 10px auto;
     text-align: left;
     border: 1px solid grey;
     padding: 20px;
-    background: #EEEEEE;
+    background: #EEEEEE; 
 }
 
-#loginRegister{
-    position: right;
+/* Add padding to containers */
+.container {
+    padding: 16px;
 }
 
-div.blog_post h2 a, div#header h1 a {
-    text-decoration: none;
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for the submit/register button */
+.registerbtn {
+    justify-content: center;
+    background-color: #04AA6D;
     color: black;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }
 
-div#header h1 {
-    margin-top: 0;
-    font-size: 2.5em;
-}
-
-div.blog_post h2 {
-    margin-bottom: 0;
-}
-
-div.blog_post p {
-    margin-top: 0;
-}
-
-div.blog_post div.blog_content p {
-    margin-top: 0.5em;
-}
-
-ul#menu li {
-    display: inline;
-}
-
-ul#menu li a {
-    border: 1px solid grey;
-    padding: 5px 10px;
-}
-
-ul#menu {
-    padding-left: 0;    
-    list-style: none;
-    margin-bottom: 4px;
-}
-
-ul#menu li a.active {
-    border: 2px solid grey;
-    background: #999999;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-ul#menu li a:hover {
-    background: #AAAAAA;
-    color: black;
-}
-
-div#all_blogs {
-    border: 2px solid grey;
-    padding: 0 10px 10px 10px;
-}
-
-h1, h2 {
-    font-family: Cambria, times, serif;
-}
-
-div.blog_content {
-    font-family: Calibri, sans-serif;
-}
-
-div#footer {
-    text-align: right;
-    margin-top: 10px;
-    
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
 }
