@@ -6,6 +6,9 @@
  */
 require('connect.php');
 
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +22,7 @@ require('connect.php');
 </head>
 <body>
     <div id="wrapper">
-        <form action="action_page.php">
+        <form action="action_page.php" method="post">
             <div class="container">
                 <h1>Login</h1>
 
@@ -29,7 +32,9 @@ require('connect.php');
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-                <button type="submit" class="registerbtn">Login</button>
+                <p>
+                    <input class="registerbtn" type="submit" name="command" value="Login" />
+                </p>
             </div>
 
             <div class="container signin">

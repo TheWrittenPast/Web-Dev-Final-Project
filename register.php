@@ -21,8 +21,9 @@ require('connect.php');
 </head>
 <body>
     <div id="wrapper">
-        <form action="action_page.php">
+        <form action="action_page.php" method="post">
             <div class="container">
+
                 <h1>Register</h1>
                 <p>Please fill in this form to create an account.</p>
 
@@ -38,7 +39,9 @@ require('connect.php');
                 <label for="psw-repeat"><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
 
-                <button type="submit" class="registerbtn">Register</button>
+                <p>
+                    <input class="registerbtn" type="submit" name="command" value="Register" />
+                </p>
             </div>
 
             <div class="container signin">

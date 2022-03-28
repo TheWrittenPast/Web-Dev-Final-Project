@@ -19,9 +19,14 @@ nav {
     justify-content: space-evenly;
     list-style: none;
     font-size: 1.5em;
+    margin-top: 20px;
 }
 
-h1 {
+    nav button{
+        padding: 10px;
+    }
+
+.homePage{
     font-family: sans-serif;
     font-size: 2rem;
     margin: auto; 
@@ -34,7 +39,7 @@ section {
     justify-content: center;
 }
 
-div { /* rows of articles */
+.article{ /* rows of articles */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -44,13 +49,18 @@ div { /* rows of articles */
     margin: auto;
 }
 
+.article:last-child{
+    justify-content: flex-start;
+}
+
 article { /* each video game review */
     display: flex;
     flex-direction: column;
-    width: 31%;
+    width: 29%;
     border: 1px solid grey;
     margin: 5px;
     padding-left: 20px;
+    padding-right: 20px;
     background-color: beige;
     }
     
@@ -60,7 +70,6 @@ article { /* each video game review */
 
 
 h2{
-    
     Font-family: sans-serif;
     Font-size: 1rem;
     }
@@ -96,12 +105,6 @@ input[type=text]:focus, input[type=password]:focus {
     outline: none;
 }
 
-/* Overwrite default styles of hr */
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
 /* Set a style for the submit/register button */
 .registerbtn {
     justify-content: center;
@@ -117,4 +120,5 @@ hr {
 .signin {
     background-color: #f1f1f1;
     text-align: center;
+    padding: 0px;
 }

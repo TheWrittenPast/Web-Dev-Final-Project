@@ -5,7 +5,7 @@
  *      Description: Home page for blog.
  */
 require('connect.php');
-$limit = 3;
+session_start();
 // SQL is written as a String.
 $query = "SELECT * FROM post ORDER BY date DESC";
 $gameSet = "SELECT * FROM games";
@@ -31,24 +31,36 @@ $gameStatement->execute();
 </head>
 <body>
 
-
 <header>
     <nav>
-        <button><a href="login.php">Log-in</a> </button>
-        <button><a href="register.php">Register</a> </button>
-        <li><a href="index.php" class='active'>Home</a></li>
-        <li><a href="create.php" >New Post</a></li>
-
-    <select name="games">
-        <option value="all">All</option>
-        <?php while($row = $gameStatement->fetch()) :?>
-            <option value="<?= $row['Game']?>"><?= $row['Game'] ?></option>
-        <?php endwhile ?>
-    </select>
-
+        <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin' ) :?>
+            <li><a href="index.php" class='active'>Home</a></li>
+            <li><a href="create.php" >New Post</a></li>
+            <li><a href="#" >Create New Categories</a></li>
+            <select name="games">
+                <option value="all">All</option>
+                <?php while($row = $gameStatement->fetch()) :?>
+                    <option value="<?= $row['Game']?>"><?= $row['Game'] ?></option>
+                <?php endwhile ?>
+            </select>
+            <button>Search</button>
+        <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
+            <li><a href="index.php" class='active'>Home</a></li>
+            <li><a href="create.php" >New Post</a></li>
+            <select name="games">
+                <option value="all">All</option>
+                <?php while($row = $gameStatement->fetch()) :?>
+                    <option value="<?= $row['Game']?>"><?= $row['Game'] ?></option>
+                <?php endwhile ?>
+            </select>
+            <button>Search</button>
+        <?php else: ?>
+            <button><a href="login.php">Log-in</a> </button>
+            <button><a href="register.php">Register</a> </button>
+        <?php endif ?>
     </nav>
 
-    <h1><a href="index.php">RISE - Home Page</a></h1>
+    <h1 class="homePage"><a href="index.php">RISE - Home</a></h1>
 
 </header>
 
