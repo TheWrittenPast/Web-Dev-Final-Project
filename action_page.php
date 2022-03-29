@@ -1,4 +1,9 @@
 <?php
+/*               
+ *      Name: John Russel Tabelina
+ *      Date: March 21, 2022
+ *      Description: Completes the action of registering, logging in, and logging off.
+ */
 
 require('connect.php');
 
@@ -45,11 +50,22 @@ if ($_POST['command']=='Login') {
             session_start();
             $_SESSION['username'] = $row['username'];
             $_SESSION['role'] = $row['roles'];
-            header("Location:index.php");
+            header("Location: index.php");
         }
-
     }    
 }
+
+if ($_POST['command']== 'Log off'){    
+    session_start();
+    // Unset all of the session variables
+    $_SESSION = array();
+    session_destroy();
+    
+    header("Location: index.php");
+    exit;
+}
+
+
 
 ?>
 <!DOCTYPE html>

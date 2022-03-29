@@ -6,7 +6,7 @@
  */
 
 require('connect.php');
-
+session_start();
 if($_GET && is_numeric($_GET['id'])) {
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
@@ -33,46 +33,54 @@ if($_GET && is_numeric($_GET['id'])) {
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-    <?php if($row) :?>
-        <div id="wrapper">
-            <div id="header">
-                <h1><a href="index.php">The Past Is Written - Edit Post </a></h1>
-            </div> <!-- END div id="header" -->
-    <ul id="menu">
-        <li><a href="index.php" >Home</a></li>
-        <li><a href="create.php" >New Post</a></li>
-    </ul> <!-- END div id="menu" -->
-    <div id="all_blogs">
-        <form action="complete_post.php" method="post">
-            <fieldset>
-                <legend>Edit Blog Post</legend>
-                    <p>
-                        <label for="title">Title</label>
-                        <input name="title" id="title" value= '<?= $row['Title']?>' />
-                    </p>
-                    <p>
-                        <label for="game">Game</label>
-                        <input name="game" id="game" value= '<?= $row['Game']?>' />
-                    </p>
-                    <p>
-                        <label for="content">Content</label>
-                            <textarea name="content" id="content"><?= $row['content'] ?></textarea>
-                    </p>
-                
-            <p>
-                <input type="hidden" name="id" value=<?= $row['Page_id']?> />
+<nav>
+  <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin' ) :?>
+      <li><a href="index.php" class='active'>Home</a></li>
+      <li><a href="create.php" >New Post</a></li>
+      <li><a href="#" >Admin</a></li>
+      <input type="submit" name="command" value="Log off" />
+  <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
+      <li><a href="index.php" class='active'>Home</a></li>
+      <li><a href="create.php" >New Post</a></li>
+      <input type="submit" name="command" value="Log off" />
+  <?php else: ?>
+      <li><a href="index.php" class='active'>Home</a></li>
+      <button><a href="login.php">Log-in</a> </button>
+      <button><a href="register.php">Register</a> </button>
+  <?php endif ?>
+</nav>
+
+<div id="wrapper">
+    <h1 class="newPosth1"><a href="index.php">RISE - New Post</a></h1>
+  <div>
+    <form action="complete_post.php" method="post">
+      <fieldset>
+        <div class="titleAndGame">
+            <label for="title">Title</label>
+            <input name="title" id="title" value= '<?= $row['Title']?>' />
+            <label for="game">Game</label>
+            <input name="game" id="game" value= '<?= $row['Game']?>' />
+        </div>
+
+        <div class="createContent">
+            <label for="content">Content</label>
+            <textarea name="content" id="content"><?= $row['content'] ?></textarea>
+          <p>
+          <input type="hidden" name="id" value=<?= $row['Page_id']?> />
                 <input type="submit" name="command" value="Update" />
                 <input type="submit" name="command" value="Delete" onclick="return confirm('Are you sure you wish to delete this post?')" />
-            </p>
-            </fieldset>
-        </form>
-    </div>
-            <div id="footer">
-                Copywrong 2022 - No Rights Reserved
-            </div> <!-- END div id="footer" -->
-        </div> <!-- END div id="wrapper" -->
-    <?php else : ?>
-        <?php header("Location: index.php"); ?>
-    <?php endif ?>
+          </p>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div id="footer">
+      Copyright 2022 - RISE
+  </div>
+</div>
+
+
+
+
 </body>
 </html>

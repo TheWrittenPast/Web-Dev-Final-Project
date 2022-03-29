@@ -2,7 +2,7 @@
 /*               
  *      Name: John Russel Tabelina
  *      Date: March 21, 2022
- *      Description: Home page for blog.
+ *      Description: Home page
  */
 require('connect.php');
 session_start();
@@ -36,14 +36,15 @@ $gameStatement->execute();
         <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin' ) :?>
             <li><a href="index.php" class='active'>Home</a></li>
             <li><a href="create.php" >New Post</a></li>
-            <li><a href="#" >Create New Categories</a></li>
+            <li><a href="#" >Admin</a></li>
             <select name="games">
                 <option value="all">All</option>
                 <?php while($row = $gameStatement->fetch()) :?>
                     <option value="<?= $row['Game']?>"><?= $row['Game'] ?></option>
                 <?php endwhile ?>
             </select>
-            <button>Search</button>
+            <input type="submit" name="command" value="Search" />
+            <input type="submit" name="command" value="Log off" />
         <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
             <li><a href="index.php" class='active'>Home</a></li>
             <li><a href="create.php" >New Post</a></li>
@@ -53,8 +54,10 @@ $gameStatement->execute();
                     <option value="<?= $row['Game']?>"><?= $row['Game'] ?></option>
                 <?php endwhile ?>
             </select>
-            <button>Search</button>
+            <input type="submit" name="command" value="Search" />
+            <input type="submit" name="command" value="Log off" />
         <?php else: ?>
+            <li><a href="index.php" class='active'>Home</a></li>
             <button><a href="login.php">Log-in</a> </button>
             <button><a href="register.php">Register</a> </button>
         <?php endif ?>
@@ -71,8 +74,16 @@ $gameStatement->execute();
                 <?php while($row = $statement->fetch()) :?>
                     <article>
                         <h2> <a href="show.php?id=<?= $row['Page_id']?>"> <?= $row['Title'] ?> </a> </h2>
-                        <p> <?= date('F d, Y, g:i a',strtotime($row['Date']))  ?> - <a href="edit.php?id=<?= $row['Page_id']?>">edit</a></p>
-                    <!-- <p>Created By: <?= $row['Create_By']?></p> -->
+                        <p>
+                            <small>
+                                Created By: <?= $row['Create_By']?>
+                            </small>
+                        </p>
+                        <?php if(isset($_SESSION['username']) && $row['Create_By'] == $_SESSION['username'] ) :?>
+                            <p> <?= date('F d, Y, g:i a',strtotime($row['Date']))  ?> - <a href="edit.php?id=<?= $row['Page_id']?>">edit</a></p>
+                        <?php else :?>
+                            <p> <?= date('F d, Y, g:i a',strtotime($row['Date']))?> </p>
+                        <?php endif ?> 
                     <p>
                         <small>
                             <?php if(strlen($row['content'] <= 200 )) :?>

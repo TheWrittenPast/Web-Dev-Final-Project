@@ -2,7 +2,7 @@
 /*               
  *      Name: John Russel Tabelina
  *      Date: March 23, 2022
- *      Description: Home page for blog.
+ *      Description: Login page
  */
 require('connect.php');
 

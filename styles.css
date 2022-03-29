@@ -79,10 +79,13 @@ h2{
 #wrapper {
     width: 1000px;
     margin: 10px auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
     text-align: left;
     border: 1px solid grey;
     padding: 20px;
     background: #EEEEEE; 
+    background-color: beige;
 }
 
 /* Add padding to containers */
@@ -121,4 +124,78 @@ input[type=text]:focus, input[type=password]:focus {
     background-color: #f1f1f1;
     text-align: center;
     padding: 0px;
+}
+
+#footer {
+    text-align: right;
+    margin-top: 10px;
+    
+}
+
+/* comments section */
+
+.comments{
+    width: 1000px;
+    margin: 10px auto;
+    text-align: left;
+    border: 1px solid grey;
+    padding: 20px;
+    background: #EEEEEE; 
+    
+}
+
+    .comments h1{
+        font-size: 2.5em;
+        margin-left: 25px;
+    }
+
+.comments input[type=text]{
+    width: 500px;
+    border: 1px solid grey;
+    height: 50px;
+    margin: 25px;
+}
+
+    .comments article{
+        width: 27%;
+    }
+
+    .commentInput input[type=submit]{
+        padding: 33px;
+    }
+
+.commentInput{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
+}
+
+.titleAndGame{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    font-size: 1.4em;
+}
+
+    .titleAndGame label:nth-child(3){
+        padding-left: 20px;
+    }
+
+.createContent{
+    display: flex;
+    flex-direction: column;
+}
+
+.createContent textarea{
+    height: 150px;
+    width: 70%;
+}
+
+.createContent input[type=submit]{
+    padding: 33px;
+}
+
+.newPosth1{
+    text-align: center;
 }

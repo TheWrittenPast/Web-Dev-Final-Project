@@ -6,20 +6,22 @@
  */
 
     require('connect.php');
-
+    session_start();
 if ($_POST['command']=='Create') {
     if ($_POST && !empty($_POST['title']) && !empty($_POST['content']) && $_POST && !empty($_POST['game']) ) {
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $Game = filter_input(INPUT_POST, 'game', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $user = $_SESSION['username'];
 
-        $query = "INSERT INTO post (title, content, Game) VALUES(:title, :content, :Game)";
+        $query = "INSERT INTO post (title, content, Game, Create_By) VALUES(:title, :content, :Game, :user)";
 
         $statement = $db->prepare($query);
 
         $statement->bindvalue(':title', $title);
         $statement->bindvalue(':content',$content);
         $statement->bindvalue(':Game',$Game);
+        $statement->bindvalue(':user',$user);
 
         if($statement->execute()){
             header("Location:index.php");

@@ -5,6 +5,7 @@
  *      Description: Shows the Create page of the post.
  */
 require('connect.php');
+session_start();
 
 ?>
 
@@ -16,39 +17,50 @@ require('connect.php');
     <link rel="stylesheet" href="styles.css" type="text/css">
 </head>
 <body>
-    <div id="wrapper">
-        <div id="header">
-            <h1><a href="index.php">RISE - New Post</a></h1>
-        </div> <!-- END div id="header" -->
-<ul id="menu">
-    <li><a href="index.php" >Home</a></li>
-    <li><a href="create.php" class='active'>New Post</a></li>
-</ul> <!-- END div id="menu" -->
-<div id="all_blogs">
-  <form action="complete_post.php" method="post">
-    <fieldset>
-      <legend>New Post</legend>
-      <p>
-        <label for="title">Title</label>
-        <input name="title" id="title" />
-      </p>
-      <p>
-        <label for="game">Game</label>
-        <input name="game" id="game" />
-      </p>
-      <p>
-        <label for="content">Content</label>
-        <textarea name="content" id="content"></textarea>
-      </p>
-      <p>
-        <input type="submit" name="command" value="Create" />
-      </p>
-    </fieldset>
-  </form>
+
+<nav>
+  <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin' ) :?>
+      <li><a href="index.php" class='active'>Home</a></li>
+      <li><a href="create.php" >New Post</a></li>
+      <li><a href="#" >Admin</a></li>
+      <input type="submit" name="command" value="Log off" />
+  <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
+      <li><a href="index.php" class='active'>Home</a></li>
+      <li><a href="create.php" >New Post</a></li>
+      <input type="submit" name="command" value="Log off" />
+  <?php else: ?>
+      <li><a href="index.php" class='active'>Home</a></li>
+      <button><a href="login.php">Log-in</a> </button>
+      <button><a href="register.php">Register</a> </button>
+  <?php endif ?>
+</nav>
+
+<div id="wrapper">
+    <h1 class="newPosth1"><a href="index.php">RISE - New Post</a></h1>
+  <div>
+    <form action="complete_post.php" method="post">
+      <fieldset>
+        <div class="titleAndGame">
+            <label for="title">Title</label>
+            <input name="title" id="title" />
+            <label for="game">Game</label>
+            <input name="game" id="game" />
+        </div>
+
+        <div class="createContent">
+            <label for="content">Content</label>
+            <textarea name="content" id="content"></textarea>
+          <p>
+            <input type="submit" name="command" value="Create" />
+          </p>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div id="footer">
+      Copyright 2022 - RISE
+  </div>
 </div>
-        <div id="footer">
-            Copywrong 2022 - No Rights Reserved
-        </div> <!-- END div id="footer" -->
-    </div> <!-- END div id="wrapper" -->
+
 </body>
 </html>
