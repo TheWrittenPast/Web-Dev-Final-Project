@@ -73,7 +73,11 @@ if (is_numeric($_GET['id'])) {
         <h2><?= $row['Title']?></a></h2>
         <p>
           <small>
-            <?= date('F d, Y, g:i a',strtotime($row['Date']))?> - <a href="edit.php?id=<?= $row['Page_id']?>">edit</a>
+            <?php if(isset($_SESSION['username']) && $row['Create_By'] == $_SESSION['username'] || isset($_SESSION['role']) && $_SESSION['role'] == 'admin' ) :?>
+              <?= date('F d, Y, g:i a',strtotime($row['Date']))?> - <a href="edit.php?id=<?= $row['Page_id']?>">edit</a>
+            <?php else :?>
+              <p> <?= date('F d, Y, g:i a',strtotime($row['Date']))?> </p>
+            <?php endif ?>
           </small>
         </p>
         <?= $row['content']?>    
