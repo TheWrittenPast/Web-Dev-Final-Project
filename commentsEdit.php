@@ -21,7 +21,12 @@ if($_GET && is_numeric($_GET['id'])) {
     $statement->execute();
 
     $row = $statement->fetch();
-    
+    $userId = $row['user_id'];
+    $userQuery = "SELECT username FROM systemmembers WHERE user_id = '$userId'";
+    $userStatement = $db->prepare($userQuery);
+    $userStatement->execute();
+    $userRow = $userStatement->fetch();
+
 } else {
     $row = false;
 }
@@ -43,11 +48,17 @@ if($_GET && is_numeric($_GET['id'])) {
       <li><a href="index.php" class='active'>Home</a></li>
       <li><a href="create.php" >New Post</a></li>
       <li><a href="#" >Admin</a></li>
-      <input type="submit" name="command" value="Log off" />
+      <input type="submit" name="command" value="Search" />
+      <form action="action_page.php" method="post">
+          <input type="submit" name="command" value="Log off" />
+      </form>
   <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
       <li><a href="index.php" class='active'>Home</a></li>
       <li><a href="create.php" >New Post</a></li>
-      <input type="submit" name="command" value="Log off" />
+      <input type="submit" name="command" value="Search" />
+      <form action="action_page.php" method="post">
+          <input type="submit" name="command" value="Log off" />
+      </form>
   <?php else: ?>
       <li><a href="index.php" class='active'>Home</a></li>
       <button><a href="login.php">Log-in</a> </button>
@@ -62,7 +73,7 @@ if($_GET && is_numeric($_GET['id'])) {
       <fieldset>
         <div class="titleAndGame">
             <label for="title">Comment By:</label>
-            <label class="commentBy"><?= $row['Create_By']?></label>
+            <label class="commentBy"><?= $userRow['username']?></label>
             <label for="title">Game:</label>
             <label class="commentBy"><?= $row['Game']?></label>
         </div>
