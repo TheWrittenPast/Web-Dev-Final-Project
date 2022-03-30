@@ -199,3 +199,11 @@ input[type=text]:focus, input[type=password]:focus {
 .newPosth1{
     text-align: center;
 }
+
+.commentBy{
+    background-color: white;
+    border: 1px solid grey;
+    margin-left: 10px;
+    padding-left: 5px;
+    padding-right: 50px;
+}

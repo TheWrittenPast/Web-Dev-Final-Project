@@ -8,6 +8,9 @@
 require('connect.php');
 session_start();
 
+$_SESSION['page_id'] = $_GET['id'];
+
+
 if (is_numeric($_GET['id'])) {
   $query = "SELECT * FROM post WHERE Page_id = :id LIMIT 1";
 
@@ -40,17 +43,22 @@ if (is_numeric($_GET['id'])) {
 </head>
 <body>
 
-    <nav>
+<nav>
         <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin' ) :?>
             <li><a href="index.php" class='active'>Home</a></li>
             <li><a href="create.php" >New Post</a></li>
             <li><a href="#" >Admin</a></li>
-            <input type="submit" name="command" value="Log off" />
+            <input type="submit" name="command" value="Search" />
+            <form action="action_page.php" method="post">
+                <input type="submit" name="command" value="Log off" />
+            </form>
         <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
             <li><a href="index.php" class='active'>Home</a></li>
             <li><a href="create.php" >New Post</a></li>
             <input type="submit" name="command" value="Search" />
-            <input type="submit" name="command" value="Log off" />
+            <form action="action_page.php" method="post">
+                <input type="submit" name="command" value="Log off" />
+            </form>
         <?php else: ?>
             <li><a href="index.php" class='active'>Home</a></li>
             <button><a href="login.php">Log-in</a> </button>
@@ -81,8 +89,10 @@ if (is_numeric($_GET['id'])) {
 
   <?php if(isset($_SESSION['username'])):?>
     <div class="commentInput">
-      <input type="text">
-      <input type="submit" name="command" value="Comment" />
+      <form action="complete_post.php" method="post">
+        <input name="comment" type="text">
+        <input type="submit" name="command" value="Comment" />
+      </form>
     </div>
   <?php endif ?>
  
@@ -99,7 +109,7 @@ if (is_numeric($_GET['id'])) {
         <article>
           <h2><?= $usernameRow['username'] ?></a></h2>
           <p><?= $commentRow['Content'] ?></a></p>
-          <p> <?= date('F d, Y, g:i a',strtotime($commentRow['date']))?> </p>
+          <p> <?= date('F d, Y, g:i a',strtotime($commentRow['date']))?> - <a href="commentsEdit.php?id=<?= $commentRow['id']?>">edit</a> </p>
         </article>
       <?php endwhile ?>
   </div>

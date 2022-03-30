@@ -44,7 +44,9 @@ $gameStatement->execute();
                 <?php endwhile ?>
             </select>
             <input type="submit" name="command" value="Search" />
-            <input type="submit" name="command" value="Log off" />
+            <form action="action_page.php" method="post">
+                <input type="submit" name="command" value="Log off" />
+            </form>
         <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
             <li><a href="index.php" class='active'>Home</a></li>
             <li><a href="create.php" >New Post</a></li>
@@ -55,7 +57,9 @@ $gameStatement->execute();
                 <?php endwhile ?>
             </select>
             <input type="submit" name="command" value="Search" />
-            <input type="submit" name="command" value="Log off" />
+            <form action="action_page.php" method="post">
+                <input type="submit" name="command" value="Log off" />
+            </form>
         <?php else: ?>
             <li><a href="index.php" class='active'>Home</a></li>
             <button><a href="login.php">Log-in</a> </button>

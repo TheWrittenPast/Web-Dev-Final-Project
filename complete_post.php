@@ -69,6 +69,34 @@ if ($_POST['command']=='Delete') {
     }
 }
 
+if ($_POST['command']=='Comment') {
+    if ($_POST && !empty($_POST['comment'])) {
+
+        $currentUser = $_SESSION['username'];
+
+        $usernameQuery = "SELECT user_id FROM systemmembers WHERE username = '$currentUser'";
+
+        $usernameStatement = $db->prepare($usernameQuery);
+        $usernameStatement->execute();
+        $usernameRow = $usernameStatement->fetch();
+
+        $content = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $userId = $usernameRow['user_id'];
+        $pageId = $_SESSION['page_id'];
+        $query = "INSERT INTO comments (Content, user_id, page_id) VALUES(:Content, :user_id, :page_id)";
+
+        $statement = $db->prepare($query);
+
+        $statement->bindvalue(':Content',$content);
+        $statement->bindvalue(':user_id',$userId);
+        $statement->bindvalue(':page_id',$pageId);
+
+        if($statement->execute()){
+            header("Location:show.php?id=". $_SESSION['page_id']);
+            exit();
+        }
+    }
+}
 
 ?>
 
