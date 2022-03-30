@@ -43,28 +43,7 @@ if (is_numeric($_GET['id'])) {
 </head>
 <body>
 
-<nav>
-  <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin' ) :?>
-      <li><a href="index.php" class='active'>Home</a></li>
-      <li><a href="create.php" >New Post</a></li>
-      <li><a href="#" >Admin</a></li>
-      <input type="submit" name="command" value="Search" />
-      <form action="action_page.php" method="post">
-          <input type="submit" name="command" value="Log off" />
-      </form>
-  <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
-      <li><a href="index.php" class='active'>Home</a></li>
-      <li><a href="create.php" >New Post</a></li>
-      <input type="submit" name="command" value="Search" />
-      <form action="action_page.php" method="post">
-          <input type="submit" name="command" value="Log off" />
-      </form>
-  <?php else: ?>
-      <li><a href="index.php" class='active'>Home</a></li>
-      <button><a href="login.php">Log-in</a> </button>
-      <button><a href="register.php">Register</a> </button>
-  <?php endif ?>
-</nav>
+<?php include('nav.php'); ?>
 
 
 <div id="wrapper" class="individualPost">

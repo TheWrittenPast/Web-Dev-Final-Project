@@ -20,6 +20,9 @@ require('connect.php');
     <title>Register</title>
 </head>
 <body>
+
+    <?php include('nav.php'); ?>
+
     <div id="wrapper">
         <form action="action_page.php" method="post">
             <div class="container">
