@@ -73,8 +73,7 @@ if (is_numeric($_GET['id'])) {
         <h2><?= $row['Title']?></a></h2>
         <p>
           <small>
-            <?= date('F d, Y, g:i a',strtotime($row['Date']))?> -
-            <a href="edit.php?id=<?= $row['Page_id']?>">edit</a>
+            <?= date('F d, Y, g:i a',strtotime($row['Date']))?> - <a href="edit.php?id=<?= $row['Page_id']?>">edit</a>
           </small>
         </p>
         <?= $row['content']?>    

@@ -21,6 +21,7 @@ if($_GET && is_numeric($_GET['id'])) {
     $statement->execute();
 
     $row = $statement->fetch();
+
     $userId = $row['user_id'];
     $userQuery = "SELECT username FROM systemmembers WHERE user_id = '$userId'";
     $userStatement = $db->prepare($userQuery);
@@ -82,8 +83,8 @@ if($_GET && is_numeric($_GET['id'])) {
             <label for="content">Content</label>
             <textarea name="content" id="content"><?= $row['Content'] ?></textarea>
           <p>
-          <input type="hidden" name="id" value=<?= $row['id']?> />
-                <input type="submit" name="command" value="Update" />
+          <input type="hidden" name="id" value=<?=$id?> />
+                <input type="submit" name="EditCommand" value="Update" />
                 <input type="submit" name="EditCommand" value="Delete" onclick="return confirm('Are you sure you wish to delete this post?')" />
           </p>
         </div>

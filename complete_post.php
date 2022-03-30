@@ -52,7 +52,8 @@ if ($_POST['command']=='Update') {
             exit();
         }
     }
-} 
+}
+
 if ($_POST['command']=='Delete') {
 
     $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
@@ -95,6 +96,43 @@ if ($_POST['command']=='Comment') {
             header("Location:show.php?id=". $_SESSION['page_id']);
             exit();
         }
+    }
+}
+
+if ($_POST['EditCommand']=='Update') {
+
+    if($_POST && !empty($_POST['content']) && isset($_POST['id']) ){
+        // Sanitize user input to escape HTML entities and filter out dangerous characters.
+        $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+        // Build the parameterized SQL query and bind the sanitized values to the parameters
+        $query = "UPDATE comments SET content = :content WHERE id = :id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':content', $content);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+
+        // Execute the INSERT.
+        if($statement->execute()){
+            header("Location:index.php");
+            exit();
+        }
+    }
+}
+
+if ($_POST['EditCommand']=='Delete') {
+
+    $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
+    
+    $query = "DELETE FROM comments WHERE id = :id LIMIT 1";
+    
+    $statement = $db->prepare($query);
+    
+    $statement->bindValue(':id',$id,PDO::PARAM_INT);
+
+    if($statement->execute()){
+        header("Location:index.php");
+        exit();
     }
 }
 
