@@ -83,7 +83,7 @@ $gameStatement->execute();
                                 Created By: <?= $row['Create_By']?>
                             </small>
                         </p>
-                        <?php if(isset($_SESSION['username']) && $row['Create_By'] == $_SESSION['username'] || $_SESSION['role'] == 'admin' ) :?>
+                        <?php if(isset($_SESSION['username']) && $row['Create_By'] == $_SESSION['username'] || isset($_SESSION['role']) && $_SESSION['role'] == 'admin' ) :?>
                             <p> <?= date('F d, Y, g:i a',strtotime($row['Date']))  ?> - <a href="edit.php?id=<?= $row['Page_id']?>">edit</a></p>
                         <?php else :?>
                         <p> <?= date('F d, Y, g:i a',strtotime($row['Date']))?> </p>

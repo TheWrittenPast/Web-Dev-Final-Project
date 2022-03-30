@@ -50,6 +50,7 @@ if ($_POST['command']=='Login') {
             session_start();
             $_SESSION['username'] = $row['username'];
             $_SESSION['role'] = $row['roles'];
+            $_SESSION['user_id'] = $row['user_id'];
             header("Location: index.php");
         }
     }    

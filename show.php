@@ -108,7 +108,12 @@ if (is_numeric($_GET['id'])) {
         <article>
           <h2><?= $usernameRow['username'] ?></a></h2>
           <p><?= $commentRow['Content'] ?></a></p>
-          <p> <?= date('F d, Y, g:i a',strtotime($commentRow['date']))?> - <a href="commentsEdit.php?id=<?= $commentRow['id']?>">edit</a> </p>
+
+          <?php if(isset($_SESSION['username']) && $commentRow['user_id'] == $_SESSION['user_id'] || isset($_SESSION['role']) && $_SESSION['role'] == 'admin' ) :?>
+            <p> <?= date('F d, Y, g:i a',strtotime($commentRow['date']))?> - <a href="commentsEdit.php?id=<?= $commentRow['id']?>">edit</a> </p>
+          <?php else :?>
+            <p> <?= date('F d, Y, g:i a',strtotime($commentRow['date']))?> </p>
+          <?php endif ?> 
         </article>
       <?php endwhile ?>
   </div>
