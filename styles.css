@@ -10,7 +10,7 @@ h2 a, h1 a {
 header{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 50vh;
 }
 
 nav {
@@ -32,7 +32,7 @@ nav {
 
 .homePage{
     font-family: sans-serif;
-    font-size: 2rem;
+    font-size: 3em;
     margin: auto; 
     justify-content: center;
 }
