@@ -17,7 +17,8 @@ if(isset($_POST['navCommand'])) {
         }
         else {
             $selectedGame = $_POST['games'];
-            $query = "SELECT * FROM post WHERE Game = '$selectedGame' ORDER BY date DESC";
+            $keyword = $_POST['keyword'];
+            $query = "SELECT * FROM post WHERE Game = '$selectedGame' AND content LIKE '%$keyword%' ORDER BY date DESC";
         }
     }
     if(isset($_POST['keyword'])){
