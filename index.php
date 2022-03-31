@@ -8,13 +8,20 @@ require('connect.php');
 session_start();
 
 if(isset($_POST['navCommand'])) {
-    if(isset($_POST['games'])) {
-        if($_POST['games'] == 'All'){
+    if(isset($_POST['games']) || isset($_POST['keyword']) ) {
+        if($_POST['games'] == 'All' && !isset($_POST['keyword']) ){
             $query = "SELECT * FROM post ORDER BY date DESC";
-        } else {
+        } elseif($_POST['games'] == 'All' && isset($_POST['keyword']) ){
+            $keyword = $_POST['keyword'];
+            $query = "SELECT * FROM post WHERE content LIKE '%$keyword%' ORDER BY date DESC";
+        }
+        else {
             $selectedGame = $_POST['games'];
             $query = "SELECT * FROM post WHERE Game = '$selectedGame' ORDER BY date DESC";
         }
+    }
+    if(isset($_POST['keyword'])){
+        
     }
 } else{
     $query = "SELECT * FROM post ORDER BY date DESC";

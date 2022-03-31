@@ -26,6 +26,10 @@ nav {
         padding: 10px;
     }
 
+    nav select, nav input[type=submit], nav input[type=type]{
+        padding: 8px;
+    }
+
 .homePage{
     font-family: sans-serif;
     font-size: 2rem;

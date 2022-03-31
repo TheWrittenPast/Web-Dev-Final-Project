@@ -19,13 +19,14 @@ $gameStatement->execute();
         <li><a href="create.php" >New Post</a></li>
         <li><a href="#" >Admin</a></li>
         <form action="index.php" method="post">
+        <input type="type" name="navCommand" placeholder="Search for keyword" />
             <select name="games">
                 <option value="All">All</option>
                 <?php while($gameRow = $gameStatement->fetch()) :?>
                     <option value="<?= $gameRow['Game']?>"><?= $gameRow['Game'] ?></option>
                 <?php endwhile ?>
             </select>
-            <input type="submit" name="navCommand" value="Search" />
+            <input type="submit" name="keyword" value="Search" />
         </form>
         <form action="action_page.php" method="post">
             <input type="submit" name="command" value="Log off" />
@@ -34,6 +35,7 @@ $gameStatement->execute();
         <li><a href="index.php" class='active'>Home</a></li>
         <li><a href="create.php" >New Post</a></li>
         <form action="index.php" method="post">
+        <input type="type" name="keyword" placeholder="Search for keyword" />
             <select name="games">
                 <option value="All">All</option>
                 <?php while($gameRow = $gameStatement->fetch()) :?>
