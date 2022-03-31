@@ -21,6 +21,8 @@ require('connect.php');
     <title>Login</title>
 </head>
 <body>
+    <?php include('nav.php'); ?>
+    
     <div id="wrapper">
         <form action="action_page.php" method="post">
             <div class="container">
@@ -41,6 +43,9 @@ require('connect.php');
                 <p>Don't have an account? <a href="register.php">Register</a></p>
             </div>
         </form> 
+        <div id="footer">
+            Copyright 2022 - RISE
+        </div> 
     </div>
 </body>
 </html>

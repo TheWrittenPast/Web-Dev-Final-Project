@@ -51,6 +51,9 @@ require('connect.php');
             <p>Already have an account? <a href="login.php">Sign in</a></p>
         </div>
     </form> 
+    <div id="footer">
+        Copyright 2022 - RISE
+    </div> 
 </div>
 
 </body>

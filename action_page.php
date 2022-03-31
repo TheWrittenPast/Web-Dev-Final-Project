@@ -21,11 +21,14 @@ if ($_POST['command']=='Register') {
         $statement->bindvalue(':email', $email);
         $statement->bindvalue(':username',$username);
         $statement->bindvalue(':psw', $psw);
-
         if($statement->execute()){
             header("Location:login.php");
             exit();
         }
+
+    }
+    if ($_POST['psw'] != $_POST['psw-repeat']){
+        $error = "Password needs to match.";
     }
 }
 
@@ -52,6 +55,8 @@ if ($_POST['command']=='Login') {
             $_SESSION['role'] = $row['roles'];
             $_SESSION['user_id'] = $row['user_id'];
             header("Location: index.php");
+        } else{
+            $error = "Password needs to match.";
         }
     }    
 }
@@ -83,10 +88,11 @@ if ($_POST['command']== 'Log off'){
         </div>
 
 <h1>An error occured while processing.</h1>
-<a href="index.php">Return Home</a>
-        <div id="footer">
-            Copyright 2022 - RISE
-        </div> 
+<h2> <?= $error ?> </h2>
+<p>
+    <a href="index.php">Return Home</a> 
+</p>
+
     </div>
 </body>
 </html>
