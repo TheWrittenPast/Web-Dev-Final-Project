@@ -49,6 +49,16 @@ $gameStatement->execute();
         </form>
     <?php else: ?>
         <li><a href="index.php" class='active'>Home</a></li>
+        <form action="index.php" method="post">
+        <input type="type" name="keyword" placeholder="Search for keyword" />
+            <select name="games">
+                <option value="All">All</option>
+                <?php while($gameRow = $gameStatement->fetch()) :?>
+                    <option value="<?= $gameRow['Game']?>"><?= $gameRow['Game'] ?></option>
+                <?php endwhile ?>
+            </select>
+            <input type="submit" name="navCommand" value="Search" />
+        </form>
         <button><a href="login.php">Log-in</a> </button>
         <button><a href="register.php">Register</a> </button>
     <?php endif ?>
