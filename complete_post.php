@@ -7,6 +7,7 @@
 
     require('connect.php');
     session_start();
+    
 if ($_POST['command']=='Create') {
     if ($_POST && !empty($_POST['title']) && !empty($_POST['content']) && $_POST && !empty($_POST['game']) ) {
         $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -136,7 +137,12 @@ if ($_POST['EditCommand']=='Delete') {
     }
 }
 
+
+
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html>

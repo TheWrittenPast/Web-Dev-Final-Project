@@ -23,34 +23,35 @@ require('connect.php');
 
     <?php include('nav.php'); ?>
 
-    <div id="wrapper">
-        <form action="action_page.php" method="post">
-            <div class="container">
+<div id="wrapper">
+    <form action="action_page.php" method="post">
+        <div class="container">
 
-                <h1>Register</h1>
-                <p>Please fill in this form to create an account.</p>
+            <h1>Register</h1>
+            <p>Please fill in this form to create an account.</p>
 
-                <label for="email"><b>Email</b></label>
-                <input type="email" placeholder="Enter Email" name="email" id="email" required>
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" name="email" id="email" required>
 
-                <label for="username"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" id="username" required>
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" id="username" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-                <label for="psw-repeat"><b>Repeat Password</b></label>
-                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+            <label for="psw-repeat"><b>Repeat Password</b></label>
+            <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
 
-                <p>
-                    <input class="registerbtn" type="submit" name="command" value="Register" />
-                </p>
-            </div>
+            <p>
+                <input class="registerbtn" type="submit" name="command" value="Register" />
+            </p>
+        </div>
 
-            <div class="container signin">
-                <p>Already have an account? <a href="login.php">Sign in</a></p>
-            </div>
-        </form> 
-    </div>
+        <div class="container signin">
+            <p>Already have an account? <a href="login.php">Sign in</a></p>
+        </div>
+    </form> 
+</div>
+
 </body>
 </html>

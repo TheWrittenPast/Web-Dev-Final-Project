@@ -6,8 +6,20 @@
  */
 require('connect.php');
 session_start();
-// SQL is written as a String.
-$query = "SELECT * FROM post ORDER BY date DESC";
+
+if(isset($_POST['navCommand'])) {
+    if(isset($_POST['games'])) {
+        if($_POST['games'] == 'All'){
+            $query = "SELECT * FROM post ORDER BY date DESC";
+        } else {
+            $selectedGame = $_POST['games'];
+            $query = "SELECT * FROM post WHERE Game = '$selectedGame' ORDER BY date DESC";
+        }
+    }
+} else{
+    $query = "SELECT * FROM post ORDER BY date DESC";
+}
+
 $gameSet = "SELECT * FROM games";
 
 // A PDO::Statement is prepared from the query.

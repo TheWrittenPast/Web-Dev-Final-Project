@@ -18,26 +18,30 @@ $gameStatement->execute();
         <li><a href="index.php" class='active'>Home</a></li>
         <li><a href="create.php" >New Post</a></li>
         <li><a href="#" >Admin</a></li>
-        <select name="games">
-            <option value="all">All</option>
-            <?php while($gameRow = $gameStatement->fetch()) :?>
-                <option value="<?= $gameRow['Game']?>"><?= $gameRow['Game'] ?></option>
-            <?php endwhile ?>
-        </select>
-        <input type="submit" name="command" value="Search" />
+        <form action="index.php" method="post">
+            <select name="games">
+                <option value="All">All</option>
+                <?php while($gameRow = $gameStatement->fetch()) :?>
+                    <option value="<?= $gameRow['Game']?>"><?= $gameRow['Game'] ?></option>
+                <?php endwhile ?>
+            </select>
+            <input type="submit" name="navCommand" value="Search" />
+        </form>
         <form action="action_page.php" method="post">
             <input type="submit" name="command" value="Log off" />
         </form>
     <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
         <li><a href="index.php" class='active'>Home</a></li>
         <li><a href="create.php" >New Post</a></li>
-        <select name="games">
-            <option value="all">All</option>
-            <?php while($gameRow = $gameStatement->fetch()) :?>
-                <option value="<?= $gameRow['Game']?>"><?= $gameRow['Game'] ?></option>
-            <?php endwhile ?>
-        </select>
-        <input type="submit" name="command" value="Search" />
+        <form action="index.php" method="post">
+            <select name="games">
+                <option value="All">All</option>
+                <?php while($gameRow = $gameStatement->fetch()) :?>
+                    <option value="<?= $gameRow['Game']?>"><?= $gameRow['Game'] ?></option>
+                <?php endwhile ?>
+            </select>
+            <input type="submit" name="navCommand" value="Search" />
+        </form>
         <form action="action_page.php" method="post">
             <input type="submit" name="command" value="Log off" />
         </form>
