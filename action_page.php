@@ -12,6 +12,7 @@ if ($_POST['command']=='Register') {
                 && !empty($_POST['psw']) && !empty($_POST['psw-repeat']) && $_POST['psw'] == $_POST['psw-repeat'] ){
         $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $psw = filter_input(INPUT_POST, 'psw', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $hashedPassword = password_hash($psw, PASSWORD_DEFAULT);
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
         $query = "INSERT INTO systemmembers (email, username, psw) VALUES(:email, :username, :psw)";
@@ -20,7 +21,7 @@ if ($_POST['command']=='Register') {
 
         $statement->bindvalue(':email', $email);
         $statement->bindvalue(':username',$username);
-        $statement->bindvalue(':psw', $psw);
+        $statement->bindvalue(':psw', $hashedPassword);
         if($statement->execute()){
             header("Location:login.php");
             exit();
@@ -38,24 +39,27 @@ if ($_POST['command']=='Login') {
         $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $psw = filter_input(INPUT_POST, 'psw', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        $query = "SELECT * FROM systemmembers WHERE username = :username AND psw = :psw LIMIT 1 ";
+        $query = "SELECT * FROM systemmembers WHERE username = :username LIMIT 1 ";
         $statement = $db->prepare($query);
 
         $statement->bindvalue(':username',$username);
-        $statement->bindvalue(':psw', $psw);
 
         $statement->execute();
 
         $count = $statement->rowCount();
         $row = $statement->fetch();
 
-        if($count ==1 && !empty($row)){
-            session_start();
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['role'] = $row['roles'];
-            $_SESSION['user_id'] = $row['user_id'];
-            header("Location: index.php");
-        } else{
+        $hashed_Password = $row['psw'];
+
+        if(password_verify($psw, $hashed_Password)){
+            if($count ==1 && !empty($row)){
+                session_start();
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['role'] = $row['roles'];
+                $_SESSION['user_id'] = $row['user_id'];
+                header("Location: index.php");
+            }
+        }else{
             $error = "Password needs to match.";
         }
     }    
