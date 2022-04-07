@@ -54,7 +54,13 @@ $gameStatement->execute();
 <header>
     <?php include('nav.php'); ?>
 
-    <h1 class="homePage"><a href="index.php">RISE - Home</a></h1>
+    <?php if(isset($_SESSION['username']))  : ?>
+        <h1 class="homePage"><a href="index.php">RISE - Home</a></h1>
+        <h2> Welcome <?= $_SESSION['username'] ?> </h2>
+    <?php else :?>
+        <h1 class="homePage"><a href="index.php">RISE - Home</a></h1>
+    <?php endif ?>
+
 
 </header>
 

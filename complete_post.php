@@ -115,7 +115,7 @@ if ($_POST['EditCommand']=='Update') {
 
         // Execute the INSERT.
         if($statement->execute()){
-            header("Location:index.php");
+            header("Location:show.php?id=". $_SESSION['page_id']);
             exit();
         }
     }
@@ -132,7 +132,7 @@ if ($_POST['EditCommand']=='Delete') {
     $statement->bindValue(':id',$id,PDO::PARAM_INT);
 
     if($statement->execute()){
-        header("Location:index.php");
+        header("Location:show.php?id=". $_SESSION['page_id']);
         exit();
     }
 }

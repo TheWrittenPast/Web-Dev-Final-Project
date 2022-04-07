@@ -12,6 +12,9 @@ header{
     flex-direction: column;
     height: 50vh;
 }
+    header h2{
+        margin: auto;
+    }
 
 nav {
     display: flex;

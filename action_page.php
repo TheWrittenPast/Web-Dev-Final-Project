@@ -30,6 +30,7 @@ if ($_POST['command']=='Register') {
     }
     if ($_POST['psw'] != $_POST['psw-repeat']){
         $error = "Password needs to match.";
+        $link = "register.php";
     }
 }
 
@@ -61,6 +62,7 @@ if ($_POST['command']=='Login') {
             }
         }else{
             $error = "Password needs to match.";
+            $link = "login.php";
         }
     }    
 }
@@ -94,7 +96,7 @@ if ($_POST['command']== 'Log off'){
 <h1>An error occured while processing.</h1>
 <h2> <?= $error ?> </h2>
 <p>
-    <a href="index.php">Return Home</a> 
+    <a href='<?= $link ?>'>Try Again</a> 
 </p>
 
     </div>
