@@ -64,8 +64,8 @@ if($_GET && is_numeric($_GET['id'])) {
             <textarea name="content" id="content"><?= $row['Content'] ?></textarea>
           <p>
           <input type="hidden" name="id" value=<?=$id?> />
-                <input type="submit" name="EditCommand" value="Update" />
-                <input type="submit" name="EditCommand" value="Delete" onclick="return confirm('Are you sure you wish to delete this post?')" />
+                <input type="submit" name="command" value="Update Comment" />
+                <input type="submit" name="command" value="Delete Comment" onclick="return confirm('Are you sure you wish to delete this post?')" />
           </p>
         </div>
       </fieldset>

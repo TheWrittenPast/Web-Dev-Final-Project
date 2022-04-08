@@ -88,7 +88,10 @@ $gameStatement->execute();
                                 ... <a href="show.php?id=<?= $row['Page_id']?>">Read more</a>
                             <?php endif ?>
                         </small>
-                    </p> 
+                    </p>
+                    <?php if($row['image'] != null ) :?>
+                        <p> <a href="show.php?id=<?= $row['Page_id']?>">View Image</a> </p>
+                    <?php endif ?>
                 </article>
                 <?php endwhile ?>
             </div>

@@ -18,27 +18,12 @@ session_start();
 </head>
 <body>
 
-<nav>
-  <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin' ) :?>
-      <li><a href="index.php" class='active'>Home</a></li>
-      <li><a href="create.php" >New Post</a></li>
-      <li><a href="#" >Admin</a></li>
-      <input type="submit" name="command" value="Log off" />
-  <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
-      <li><a href="index.php" class='active'>Home</a></li>
-      <li><a href="create.php" >New Post</a></li>
-      <input type="submit" name="command" value="Log off" />
-  <?php else: ?>
-      <li><a href="index.php" class='active'>Home</a></li>
-      <button><a href="login.php">Log-in</a> </button>
-      <button><a href="register.php">Register</a> </button>
-  <?php endif ?>
-</nav>
+<?php include('nav.php'); ?>
 
 <div id="wrapper">
     <h1 class="newPosth1"><a href="index.php">RISE - New Post</a></h1>
   <div>
-    <form action="complete_post.php" method="post">
+    <form action="complete_post.php" method="post" enctype='multipart/form-data'>
       <fieldset>
         <div class="titleAndGame">
             <label for="title">Title</label>
@@ -52,7 +37,9 @@ session_start();
             <textarea name="content" id="content"></textarea>
           <p>
             <input type="submit" name="command" value="Create" />
+            <input type="file" name="image" value="Upload Image" />
           </p>
+          
         </div>
       </fieldset>
     </form>
