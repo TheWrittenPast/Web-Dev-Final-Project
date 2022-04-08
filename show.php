@@ -59,8 +59,9 @@ if (is_numeric($_GET['id'])) {
             <?php endif ?>
           </small>
         </p>
-        <?= $row['content']?>   
-        <img src="uploads\medium_<?= $row['image']?>" alt="<?= $row['image']?>"> 
+        <?= $row['content']?>
+        <br>
+        <img src="uploads/medium/medium_<?= $row['image']?>" alt="<?= $row['image']?>"> 
     </div>
   <div id="footer">
     Copyright 2022 - RISE

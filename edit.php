@@ -21,6 +21,8 @@ if($_GET && is_numeric($_GET['id'])) {
     $row = false;
 }
 
+$_SESSION['image'] = $row['image'];
+echo $_SESSION['image'];
 ?>
 
 
@@ -39,7 +41,7 @@ if($_GET && is_numeric($_GET['id'])) {
 <div id="wrapper">
     <h1 class="newPosth1"><a href="index.php">RISE - New Post</a></h1>
   <div>
-    <form action="complete_post.php" method="post">
+    <form action="complete_post.php" method="post" enctype='multipart/form-data'>
       <fieldset>
         <div class="titleAndGame">
             <label for="title">Title</label>
@@ -51,6 +53,7 @@ if($_GET && is_numeric($_GET['id'])) {
         <div class="createContent">
             <label for="content">Content</label>
             <textarea name="content" id="content"><?= $row['content'] ?></textarea>
+            <input type="file" name="image" value="Upload Image" />
           <p>
           <input type="hidden" name="id" value=<?= $row['Page_id']?> />
                 <input type="submit" name="command" value="Update" />
