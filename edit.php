@@ -22,7 +22,7 @@ if($_GET && is_numeric($_GET['id'])) {
 }
 
 $_SESSION['image'] = $row['image'];
-echo $_SESSION['image'];
+
 ?>
 
 
@@ -53,7 +53,14 @@ echo $_SESSION['image'];
         <div class="createContent">
             <label for="content">Content</label>
             <textarea name="content" id="content"><?= $row['content'] ?></textarea>
-            <input type="file" name="image" value="Upload Image" />
+            <div>
+              <h3>Current Uploaded Image:</h3>
+              <img src="uploads\medium\medium_<?= $row['image']?>" alt="<?= $row['image']?>" class="editImg">
+            </div>
+            <div>
+              <h3>Upload Image:</h3>
+              <input type="file" name="image" value="Upload Image" />
+            </div>
           <p>
           <input type="hidden" name="id" value=<?= $row['Page_id']?> />
                 <input type="submit" name="command" value="Update" />

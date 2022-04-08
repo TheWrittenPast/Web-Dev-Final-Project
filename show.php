@@ -61,7 +61,7 @@ if (is_numeric($_GET['id'])) {
         </p>
         <?= $row['content']?>
         <br>
-        <img src="uploads/medium/medium_<?= $row['image']?>" alt="<?= $row['image']?>"> 
+        <img src="uploads/medium/medium_<?= $row['image']?>" alt="<?= $row['image']?>" class="showImg"> 
     </div>
   <div id="footer">
     Copyright 2022 - RISE
