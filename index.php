@@ -36,7 +36,7 @@ $gameStatement = $db->prepare($gameSet);
 
 // Execution on the DB server is delayed until we execute().
 $statement->execute(); 
-$gameStatement->execute(); 
+$gameStatement->execute();
 
 ?>
 
@@ -83,10 +83,9 @@ $gameStatement->execute();
                         <?php endif ?> 
                     <p>
                         <small>
-                            <?php if(strlen($row['content'] <= 200 )) :?>
-                                <?= substr($row['content'], 0, 200) ?>  ... <a href="show.php?id=<?= $row['Page_id']?>">Read more</a>
-                            <?php else :?>
-                                    <?= $row['content'] ?>
+                            <?= substr($row['content'], 0, 199) ?>
+                            <?php if(strlen($row['content']) > 199 ) :?>
+                                ... <a href="show.php?id=<?= $row['Page_id']?>">Read more</a>
                             <?php endif ?>
                         </small>
                     </p> 
