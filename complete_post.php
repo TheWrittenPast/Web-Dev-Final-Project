@@ -47,11 +47,11 @@ if ($_POST['command']=='Create') {
                 $actual_file_extension = pathinfo($new_file_path, PATHINFO_EXTENSION);
                 $medium_resize = new ImageResize($temporary_path);
                 $medium_resize->resizeToWidth(900);
-                $imageMed = file_upload_path($medium_resize->save('uploads/medium_'. $file_filename));
+                $imageMed = file_upload_path($medium_resize->save('uploads/medium/medium_'. $file_filename));
 
                 $small_resize = new ImageResize($temporary_path);
                 $small_resize->resizeToWidth(50);
-                $imageSmall = file_upload_path($small_resize->save('uploads/thumbnail_' . $file_filename));
+                $imageSmall = file_upload_path($small_resize->save('uploads/thumbnail/thumbnail_' . $file_filename));
             }
     
             if(file_is_an_image($temporary_path, $new_file_path)){
@@ -182,6 +182,31 @@ if ($_POST['command']=='Delete') {
         exit();
     }
 }
+
+if ($_POST['command']=='Delete Image') {
+
+    $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
+    $file_filename = null;
+    
+    $query = "UPDATE post 
+            SET image = :image
+            WHERE Page_id = :id";
+    
+    $statement = $db->prepare($query);
+    
+    $statement->bindValue(':id',$id,PDO::PARAM_INT);
+    $statement->bindvalue(':image',$file_filename);
+
+    if($statement->execute()){
+        $imageName = $_SESSION['image'];
+        unlink('uploads/' . $imageName);
+        unlink('uploads/medium/' . $imageName);
+        unlink('uploads/thumbnail/' . $imageName);
+        header("Location:index.php");
+        exit();
+    }
+}
+
 
 if ($_POST['command']=='Comment') {
     if ($_POST && !empty($_POST['comment'])) {

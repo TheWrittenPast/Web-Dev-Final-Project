@@ -21,7 +21,10 @@ if($_GET && is_numeric($_GET['id'])) {
     $row = false;
 }
 
-$_SESSION['image'] = $row['image'];
+if(!empty($row['image']) ) {
+  $_SESSION['image'] = $row['image'];
+}
+
 
 ?>
 
@@ -57,9 +60,13 @@ $_SESSION['image'] = $row['image'];
               <h3>Current Uploaded Image:</h3>
               <img src="uploads\medium\medium_<?= $row['image']?>" alt="<?= $row['image']?>" class="editImg">
             </div>
-            <div>
+            <div class="deleteImage">
               <h3>Upload Image:</h3>
               <input type="file" name="image" value="Upload Image" />
+              <?php if(isset($_SESSION['image']) && !empty($row['image']) ) :?>
+                <input type="submit" name="command" value="Delete Image" />
+              <?php endif ?>
+              
             </div>
           <p>
           <input type="hidden" name="id" value=<?= $row['Page_id']?> />

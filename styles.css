@@ -207,6 +207,10 @@ input[type=text]:focus, input[type=password]:focus {
     padding: 33px;
 }
 
+.createContent input[value="Delete Image"]{
+    padding: 5px;
+}
+
 .createContent img{
     width: 40%;
     padding: 0px;
