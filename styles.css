@@ -248,6 +248,11 @@ input[type=text]:focus, input[type=password]:focus {
         margin-bottom: 10px;
     }
 
+    .article_games input{
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
 .users{
     display: flex;
     flex-direction: column;
@@ -257,4 +262,8 @@ input[type=text]:focus, input[type=password]:focus {
 
 .users select{
     margin-top: 20px;
+}
+
+.newGame input{
+    margin-bottom: 20px;
 }

@@ -307,6 +307,49 @@ if ($_POST['command']=='Delete User') {
     $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
     
     $query = "DELETE FROM systemmembers WHERE user_id = :id LIMIT 1";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':id',$id,PDO::PARAM_INT);
+
+    $selectQuery = "SELECT * FROM systemmembers WHERE user_id = :id LIMIT 1";
+    $userStatement = $db->prepare($selectQuery);
+
+    $userStatement->bindValue('id', $id, PDO::PARAM_INT);
+    $userStatement->execute();
+    $userRow = $userStatement->fetch();
+
+    $postQueryDelete = "DELETE FROM post WHERE Create_By = :username LIMIT 1";
+    $username = $userRow['username'];
+    $deletePostStatement = $db->prepare($postQueryDelete);
+    $deletePostStatement->bindValue(':username', $username);
+    
+    if($statement->execute()){
+        $deletePostStatement->execute();
+        header("Location:admin.php");
+        exit();
+    }
+}
+
+if ($_POST['command']=='Add Game') {
+
+    $game = filter_input(INPUT_POST, 'game', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    $query = "INSERT INTO games (Game) VALUES(:Game)";
+
+    $statement = $db->prepare($query);
+
+    $statement->bindvalue(':Game',$game);
+
+    if($statement->execute()){
+        header("Location:admin.php");
+        exit();
+    }
+}
+
+if ($_POST['command']=='Delete Game') {
+
+    $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
+    
+    $query = "DELETE FROM games WHERE id = :id LIMIT 1";
     
     $statement = $db->prepare($query);
     
@@ -317,6 +360,7 @@ if ($_POST['command']=='Delete User') {
         exit();
     }
 }
+
 
 
 

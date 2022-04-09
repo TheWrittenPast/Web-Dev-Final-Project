@@ -62,8 +62,19 @@ $commentStatement->execute();
             <article>
                 <h1>ID: <?= $row['id']?></h1>
                 <p>Game: <?= $row['Game']?> </p>
+                <form action="complete_post.php" method="post">
+                    <input type="submit" name="command" value="Delete Game" />
+                    <input type="hidden" name="id" value=<?= $row['id']?> />
+                </form>
             </article>
         <?php endwhile ?>
+            <article class="newGame">
+                <h1>New Game Category</h1>
+                <form action="complete_post.php" method="post">
+                    <input name="game">
+                    <input type="submit" name="command" value="Add Game" />
+                </form>
+            </article>
     </div>
 
     <div class="article_post">

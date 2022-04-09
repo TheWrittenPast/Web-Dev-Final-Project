@@ -41,7 +41,7 @@ $_SESSION['user_id'] = $_GET['id'];
 <div id="wrapper">
     <h1 class="newPosth1"><a href="index.php">RISE - New Post</a></h1>
   <div>
-    <form action="complete_post.php" method="post" enctype='multipart/form-data'>
+    <form action="complete_post.php" method="post">
       <fieldset>
         <div class="users">
             <label for="email">Email</label>
