@@ -227,3 +227,23 @@ input[type=text]:focus, input[type=password]:focus {
     padding-left: 5px;
     padding-right: 50px;
 }
+
+#posts{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+
+.article_members, .article_games, .article_post, .article_comment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 20px;
+    width: 95%;  
+    flex-wrap: wrap;
+    margin: 1%;
+    border: 2px solid black;
+}
+    .article_post img{
+        margin-bottom: 10px;
+    }

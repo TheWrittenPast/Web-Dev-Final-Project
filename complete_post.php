@@ -123,7 +123,7 @@ if ($_POST['command']=='Update') {
                 $imageMed = file_upload_path($medium_resize->save('uploads/medium/medium_'. $file_filename));
 
                 $small_resize = new ImageResize($temporary_path);
-                $small_resize->resizeToWidth(50);
+                $small_resize->resizeToWidth(300);
                 $imageSmall = file_upload_path($small_resize->save('uploads/thumbnail/thumbnail_' . $file_filename));
             }
     
@@ -200,8 +200,8 @@ if ($_POST['command']=='Delete Image') {
     if($statement->execute()){
         $imageName = $_SESSION['image'];
         unlink('uploads/' . $imageName);
-        unlink('uploads/medium/' . $imageName);
-        unlink('uploads/thumbnail/' . $imageName);
+        unlink('uploads/medium/medium_' . $imageName);
+        unlink('uploads/thumbnail/thumbnail_' . $imageName);
         header("Location:index.php");
         exit();
     }

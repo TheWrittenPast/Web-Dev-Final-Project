@@ -17,7 +17,7 @@ $gameStatement->execute();
     <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin' ) :?>
         <li><a href="index.php" class='active'>Home</a></li>
         <li><a href="create.php" >New Post</a></li>
-        <li><a href="#" >Admin</a></li>
+        <li><a href="admin.php" >Admin</a></li>
         <form action="index.php" method="post">
         <input type="type" name="navCommand" placeholder="Search for keyword" />
             <select name="games">

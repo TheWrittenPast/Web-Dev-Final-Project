@@ -61,7 +61,7 @@ if(!empty($row['image']) ) {
               <img src="uploads\medium\medium_<?= $row['image']?>" alt="<?= $row['image']?>" class="editImg">
             </div>
             <div class="deleteImage">
-              <h3>Upload Image:</h3>
+              <h3>Edit Image:</h3>
               <input type="file" name="image" value="Upload Image" />
               <?php if(isset($_SESSION['image']) && !empty($row['image']) ) :?>
                 <input type="submit" name="command" value="Delete Image" />
