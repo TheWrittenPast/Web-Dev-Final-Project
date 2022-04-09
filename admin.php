@@ -52,6 +52,7 @@ $commentStatement->execute();
                 <p>Email: <?= $row['email']?> </p>
                 <p>Username: <?= $row['username']?> </p>
                 <p>Role: <?= $row['roles']?> </p>
+                <p><a href="editUsers.php?id=<?= $row['user_id']?>">Edit</a></p>
             </article>
         <?php endwhile ?>
     </div>

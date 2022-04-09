@@ -274,6 +274,52 @@ if ($_POST['command']=='Delete Comment') {
     }
 }
 
+if ($_POST['command']=='Update User') {
+
+    if($_POST && !empty($_POST['email']) && !empty($_POST['username']) && isset($_POST['id']) ){
+        // Sanitize user input to escape HTML entities and filter out dangerous characters.
+        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $roles = $_POST['roles'];
+        // Build the parameterized SQL query and bind the sanitized values to the parameters
+        $query = "UPDATE systemmembers 
+                  SET email = :email,
+                  username = :username,
+                  roles = :roles
+                  WHERE user_id = :id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':username', $username);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':roles', $roles);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+
+        // Execute the INSERT.
+        if($statement->execute()){
+            header("Location:editUsers.php?id=". $_SESSION['user_id']);
+            exit();
+        }
+    }
+}
+
+if ($_POST['command']=='Delete User') {
+
+    $id = filter_input(INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
+    
+    $query = "DELETE FROM systemmembers WHERE user_id = :id LIMIT 1";
+    
+    $statement = $db->prepare($query);
+    
+    $statement->bindValue(':id',$id,PDO::PARAM_INT);
+
+    if($statement->execute()){
+        header("Location:admin.php");
+        exit();
+    }
+}
+
+
+
 ?>
 
 

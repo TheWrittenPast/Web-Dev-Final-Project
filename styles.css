@@ -184,7 +184,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 .titleAndGame{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-bottom: 30px;
     font-size: 1.4em;
 }
@@ -247,3 +247,14 @@ input[type=text]:focus, input[type=password]:focus {
     .article_post img{
         margin-bottom: 10px;
     }
+
+.users{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    font-size: 1.4em;
+}
+
+.users select{
+    margin-top: 20px;
+}
