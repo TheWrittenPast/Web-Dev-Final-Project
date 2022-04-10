@@ -66,7 +66,7 @@ $gameStatement->execute();
 
 <section id="posts">
 
-    <?php if($statement->rowCount() > 0) :?>
+    <?php if($statement->rowCount() >= 1) :?>
             <div class="article">
                 <?php while($row = $statement->fetch()) :?>
                     <article>
