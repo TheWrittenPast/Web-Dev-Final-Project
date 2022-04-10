@@ -10,7 +10,7 @@ session_start();
 if($_GET && is_numeric($_GET['id'])) {
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-    $query = "SELECT * FROM systemmembers WHERE user_id = :id LIMIT 1";
+    $query = "SELECT * FROM games WHERE id = :id LIMIT 1";
     $statement = $db->prepare($query);
 
     $statement->bindValue('id', $id, PDO::PARAM_INT);
@@ -39,28 +39,18 @@ $_SESSION['user_id'] = $_GET['id'];
   <?php include('nav.php'); ?>
 
 <div id="wrapper">
-    <h1 class="newPosth1"><a href="index.php">RISE - Edit Users</a></h1>
+    <h1 class="newPosth1"><a href="index.php">RISE - Edit Category/Game</a></h1>
   <div>
     <form action="complete_post.php" method="post">
       <fieldset>
         <div class="users">
-            <label for="email">Email</label>
-            <input name="email" id="email" value= '<?= $row['email']?>' />
-            <label for="username">Username</label>
-            <input name="username" id="username" value= '<?= $row['username']?>' />
-            <select name="roles" >
-              <option value="<?= $row['roles']?>"><?= $row['roles'] ?>
-              <?php if($row['roles'] == 'admin' ) :?>
-                <option value="user">User</option>
-              <?php else :?>
-                <option value="admin">Admin</option>
-              <?php endif ?>
-            </select>
+            <label for="game">Game</label>
+            <input name="game" id="game" value= '<?= $row['Game']?>' />
         </div>
       <p>
-        <input type="hidden" name="id" value=<?= $row['user_id']?> />
-        <input type="submit" name="command" value="Update User" />
-        <input type="submit" name="command" value="Delete User" onclick="return confirm('Are you sure you wish to delete this post?')" />
+        <input type="hidden" name="id" value=<?= $row['id']?> />
+        <input type="submit" name="command" value="Update Game" />
+        <input type="submit" name="command" value="Delete Game" onclick="return confirm('Are you sure you wish to delete this post?')" />
       </p>
       </fieldset>
     </form>

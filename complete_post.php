@@ -361,7 +361,26 @@ if ($_POST['command']=='Delete Game') {
     }
 }
 
+if ($_POST['command']=='Update Game') {
 
+    if($_POST && !empty($_POST['game']) && isset($_POST['id']) ){
+        // Sanitize user input to escape HTML entities and filter out dangerous characters.
+        $game = filter_input(INPUT_POST, 'game', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+        // Build the parameterized SQL query and bind the sanitized values to the parameters
+        $query = "UPDATE games SET Game = :game WHERE id = :id";
+        $statement = $db->prepare($query);
+        $statement->bindValue(':game', $game);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+
+        // Execute the INSERT.
+        if($statement->execute()){
+            header("Location:admin.php");
+            exit();
+        }
+    }
+}
 
 
 ?>

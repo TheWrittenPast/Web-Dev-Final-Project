@@ -62,10 +62,7 @@ $commentStatement->execute();
             <article>
                 <h1>ID: <?= $row['id']?></h1>
                 <p>Game: <?= $row['Game']?> </p>
-                <form action="complete_post.php" method="post">
-                    <input type="submit" name="command" value="Delete Game" />
-                    <input type="hidden" name="id" value=<?= $row['id']?> />
-                </form>
+                <p><a href="editCategory.php?id=<?= $row['id']?>">Edit</a></p>
             </article>
         <?php endwhile ?>
             <article class="newGame">
@@ -92,6 +89,7 @@ $commentStatement->execute();
                 <?php else :?>
                     <p>Image: No Image </p>
                 <?php endif ?>
+                <p><a href="edit.php?id=<?= $row['Page_id']?>">edit</a></p>
             </article>
         <?php endwhile ?>
     </div>
@@ -104,6 +102,7 @@ $commentStatement->execute();
                 <p>User_Id: <?= $row['user_id']?> </p>
                 <p>Date: <?= $row['date']?> </p>
                 <p>Page_Id: <?= $row['page_id']?> </p>
+                <p><a href="commentsEdit.php?id=<?= $row['id']?>">edit</a></p>
             </article>
         <?php endwhile ?>
     </div>
