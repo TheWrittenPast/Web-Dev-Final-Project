@@ -249,6 +249,10 @@ input[type=text]:focus, input[type=password]:focus {
         margin-bottom: 20px;
     }
 
+.adminHeaders{
+    margin: auto;
+}
+
 .users{
     display: flex;
     flex-direction: column;

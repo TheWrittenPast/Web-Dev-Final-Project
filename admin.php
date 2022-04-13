@@ -45,6 +45,10 @@ $commentStatement->execute();
     
 <section id="posts">
 
+<div class="adminHeaders">
+    <h1>System Members</h1>
+</div>
+
 <div class="article_members">
         <?php while($row = $memberStatement->fetch()) :?>
             <article>
@@ -56,6 +60,10 @@ $commentStatement->execute();
             </article>
         <?php endwhile ?>
     </div>
+
+<div class="adminHeaders">
+    <h1>Categories / Games</h1>
+</div>
 
     <div class="article_games">
         <?php while($row = $gameStatements->fetch()) :?>
@@ -73,6 +81,10 @@ $commentStatement->execute();
                 </form>
             </article>
     </div>
+
+<div class="adminHeaders">
+    <h1>Posts</h1>
+</div>
 
     <div class="article_post">
         <?php while($row = $postStatement->fetch()) :?>
@@ -93,6 +105,10 @@ $commentStatement->execute();
             </article>
         <?php endwhile ?>
     </div>
+
+<div class="adminHeaders">
+    <h1>Comments</h1>
+</div>
 
     <div class="article_comment">
     <?php while($row = $commentStatement->fetch()) :?>
