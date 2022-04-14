@@ -64,7 +64,7 @@ if(!empty($row['image']) ) {
               <h3>Edit Image:</h3>
               <input type="file" name="image" value="Upload Image" />
               <?php if(isset($_SESSION['image']) && !empty($row['image']) ) :?>
-                <input type="submit" name="command" value="Delete Image" />
+                <input type="submit" name="command" value="Delete Image" onclick="return confirm('Are you sure you wish to delete this image?')" />
               <?php endif ?>
               
             </div>

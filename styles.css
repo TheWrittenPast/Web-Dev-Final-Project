@@ -29,8 +29,29 @@ nav {
         padding: 10px;
     }
 
-    nav select, nav input[type=submit], nav input[type=type]{
+    nav select, nav input[type=submit], nav input[type=text]{
         padding: 8px;
+    }
+
+    nav input[type=text]{
+        width: 150px;
+    }
+
+    nav ul{
+        list-style: none;
+        margin: 0px;
+        padding-left: 0px;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    nav ul li {
+        padding-left: 120px;
+    }
+
+    nav ul li:first-child{
+        padding-left: 0px;
     }
 
 .homePage{

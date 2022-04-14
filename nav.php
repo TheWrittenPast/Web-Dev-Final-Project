@@ -15,11 +15,13 @@ $gameStatement->execute();
 
 <nav>
     <?php if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin' ) :?>
-        <li><a href="index.php" class='active'>Home</a></li>
-        <li><a href="create.php" >New Post</a></li>
-        <li><a href="admin.php" >Admin</a></li>
+        <ul>
+            <li><a href="index.php" class='active'>Home</a></li>
+            <li><a href="create.php" >New Post</a></li>
+            <li><a href="admin.php" >Admin</a></li>
+        </ul>
         <form action="index.php" method="post">
-        <input type="type" name="keyword" placeholder="Search for keyword" />
+        <input type="text" name="keyword" placeholder="Search for keyword" />
             <select name="games">
                 <option value="All">All</option>
                 <?php while($gameRow = $gameStatement->fetch()) :?>
@@ -32,10 +34,12 @@ $gameStatement->execute();
             <input type="submit" name="command" value="Log off" />
         </form>
     <?php elseif(isset($_SESSION['username']) && $_SESSION['role'] == 'user')  : ?>
-        <li><a href="index.php" class='active'>Home</a></li>
-        <li><a href="create.php" >New Post</a></li>
+        <ul>
+            <li><a href="index.php" class='active'>Home</a></li>
+            <li><a href="create.php" >New Post</a></li>
+        </ul>
         <form action="index.php" method="post">
-        <input type="type" name="keyword" placeholder="Search for keyword" />
+        <input type="text" name="keyword" placeholder="Search for keyword" />
             <select name="games">
                 <option value="All">All</option>
                 <?php while($gameRow = $gameStatement->fetch()) :?>
@@ -48,9 +52,11 @@ $gameStatement->execute();
             <input type="submit" name="command" value="Log off" />
         </form>
     <?php else: ?>
-        <li><a href="index.php" class='active'>Home</a></li>
+        <ul>
+            <li><a href="index.php" class='active'>Home</a></li>
+        </ul>
         <form action="index.php" method="post">
-        <input type="type" name="keyword" placeholder="Search for keyword" />
+        <input type="text" name="keyword" placeholder="Search for keyword" />
             <select name="games">
                 <option value="All">All</option>
                 <?php while($gameRow = $gameStatement->fetch()) :?>
@@ -59,7 +65,11 @@ $gameStatement->execute();
             </select>
             <input type="submit" name="navCommand" value="Search" />
         </form>
-        <button><a href="login.php">Log-in</a> </button>
-        <button><a href="register.php">Register</a> </button>
+        <form action="login.php" method="get">
+            <button>Login </button>
+        </form>
+        <form action="register.php" method="get">
+            <button>Register</button>
+        </form>
     <?php endif ?>
 </nav>
